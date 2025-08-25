@@ -15,5 +15,3 @@ To be fully synchronized, you must read the following in detail:
 ---
 
 After your review, please confirm you are fully synchronized with all the details.
-
-Our next step is to create the **"Part 2: Frontend"** technical specification document.
