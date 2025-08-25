@@ -65,7 +65,7 @@ The API is the contract between the frontend and the backend. It will be RESTful
 
 This flow governs how users securely access their sanctuary.
 
-[View Authentication Sequence Diagram](diagram_auth_flow.mmd)
+[View Authentication Sequence Diagram](diagram_auth_flow.md)
 
 * **`POST /auth/register`**
     * **Description:** Creates a new user account. Hashes the password using a strong algorithm (e.g., bcrypt) before storing it.
