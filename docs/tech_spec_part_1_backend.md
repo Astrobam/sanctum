@@ -91,7 +91,7 @@ This is the primary endpoint for user-AI interaction.
 
 This diagram illustrates the backend journey of a single user message.
 
-[View Message Processing Flow Diagram](diagram/message_flow.mmd)
+[View Message Processing Flow Diagram](diagram/message_flow.md)
 
 * **`GET /conversations/{conversation_id}`**
     * **Description:** Retrieves the message history for a specific conversation.
