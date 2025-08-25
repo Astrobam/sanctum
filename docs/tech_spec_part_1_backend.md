@@ -33,7 +33,7 @@ We will use PostgreSQL for its reliability and strong data integrity. The schema
 
 This diagram illustrates the relationships between our core data tables.
 
-[View Database ERD](diagram_database_schema.mmd)
+[View Database ERD](diagram/database_schema.md)
 
 ### Table Definitions
 
