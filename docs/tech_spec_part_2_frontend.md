@@ -36,19 +36,17 @@ This diagram visualizes the primary components and their relationship to our glo
 ### Key Component Descriptions
 
 * **`ChatView.tsx`**: The main screen post-authentication. This component orchestrates the entire conversational experience, composing the `AvatarCanvas`, `MessageList`, and `MessageInput` together.
-* **`AvatarCanvas.tsx`**: This is the heart of our immersive experience. It's a React Three Fiber component responsible for rendering the 3D avatar. Its logic is critical:
-    1.  It loads the appropriate `.vrm` model for the current persona (Gem or Abby).
-    2.  It uses the browser's Text-to-Speech (TTS) engine to generate audio from the AI's text response.
-    3.  Crucially, it hooks into the TTS audio stream using the **Web Audio API**'s `AnalyserNode`.
-    4.  In every render frame, it gets the current audio volume from the `AnalyserNode` and maps this value to the VRM model's pre-defined mouth blendshapes (e.g., `model.blendShapeProxy.setValue('a', volume)`), creating a seamless, real-time lip-sync effect.
+* **`AvatarCanvas.tsx`**: This is the heart of our immersive experience. It's a React component responsible for initializing and managing the **`TalkingHead` library instance**. Its logic is now significantly simplified:
+    1.  It loads the appropriate avatar model for the current persona (Gem or Abby).
+    2.  It initializes the `TalkingHead` class, which handles all the low-level Three.js scene setup and rendering.
+    3.  When a new AI message is received, it gets the audio stream (e.g., from the browser's TTS engine or an external service) and simply calls the library's high-level methods, such as `talkingHead.speakAudio(audioStream)`.
+    4.  The `TalkingHead` library internally handles all the complex work of real-time viseme calculation and lip-syncing, abstracting it away from our application code.
 * **`MessageList.tsx`**: A simple, performant component that renders the list of messages. It will use virtualization (e.g., `react-window`) to efficiently handle very long conversation histories.
 
 ---
-## 5. State Management
+## 5. State Management & Technology
 
-We will use **Zustand** for global state management due to its simplicity, minimal boilerplate, and excellent performance.
-
-* **`authStore`**: Will hold the user's authentication token, profile information, and isAuthenticated flag.
-* **`chatStore`**: Will manage the state of the active conversation, including the list of messages, the current persona, and loading/error states.
-
-This centralized state ensures that all components have a single source of truth, preventing inconsistencies and simplifying the data flow throughout the application.
+* **State Management:** We will use **Zustand** for global state management due to its simplicity, minimal boilerplate, and excellent performance.
+    * **`authStore`**: Will hold the user's authentication token, profile information, and isAuthenticated flag.
+    * **`chatStore`**: Will manage the state of the active conversation, including the list of messages, the current persona, and loading/error states.
+* **Avatar Engine:** We will use the **`met4citizen/TalkingHead`** library. This is a high-level, "out-of-the-box" solution that wraps Three.js and provides a simple API for driving real-time 3D avatars with audio. This significantly accelerates development by handling the most complex parts of the visual experience.
