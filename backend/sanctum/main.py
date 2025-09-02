@@ -1,7 +1,7 @@
 # backend/sanctum/main.py
 
 from fastapi import FastAPI
-from sanctum.routers import auth
+from sanctum.routers import auth, conversations
 
 # Create the main FastAPI application instance
 app = FastAPI(
@@ -12,6 +12,10 @@ app = FastAPI(
 
 # Include the authentication router
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
+# Include the conversations router
+app.include_router(
+    conversations.router, prefix="/api/v1/conversations", tags=["Conversations"]
+)
 
 @app.get("/", tags=["Root"])
 def read_root():
