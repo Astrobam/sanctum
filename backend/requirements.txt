@@ -1,3 +1,4 @@
+# backend/requirements.txt
 fastapi
 uvicorn[standard]
 pydantic
@@ -8,3 +9,11 @@ sqlalchemy
 psycopg2-binary
 tenacity
 python-dotenv
+# AI Core Dependencies
+crewai
+langchain-community
+chromadb
+sentence-transformers
+# LLM Provider (choose one or more)
+langchain-openai
+langchain-groq
