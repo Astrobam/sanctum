@@ -1,6 +1,7 @@
 # backend/sanctum/core/config.py
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Optional
 
 class Settings(BaseSettings):
     """
@@ -16,6 +17,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    
+    # LLM
+    OPENAI_API_KEY: Optional[str] = None
 
 
 # Create a single, reusable instance of the settings
